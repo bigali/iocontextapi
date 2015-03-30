@@ -3,7 +3,7 @@
     angular
         .module('users')
         .controller('UserController', [
-            'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
+            'userService', '$mdSidenav', '$mdBottomSheet', '$http', '$log', '$q',
             UserController
         ]);
 
@@ -14,7 +14,7 @@
      * @param avatarsService
      * @constructor
      */
-    function UserController(userService, $mdSidenav, $mdBottomSheet, $log, $q) {
+    function UserController(userService, $mdSidenav, $mdBottomSheet, $http, $log, $q) {
         var self = this;
 
         self.selected = null;
@@ -25,12 +25,23 @@
 
 
         //autocomplet test
-        self.states =  loadAll();
+        self.states = loadAll();
         self.selectedItem = null;
         self.searchText = null;
         self.querySearch = querySearch;
         self.simulateQuery = false;
         self.isDisabled = false;
+        self.myCol = [{
+            url: './image.jpg',
+            name: 'Some Title',
+            email: 'test@text.com',
+            list: [{email: 'test_two@text.com', url: 'image_two.jpg'}]
+        }, {
+            name: 'Another Title',
+            list: [{email: 'test@text.com', url: 'image.jpg'}]
+        }];
+
+        self.returnedValues = [];
 
         // Load all registered users
 
@@ -100,22 +111,49 @@
             }
         }
 
+
+        // implementation
+        function getAlbums() {
+            var def = $q.defer();
+
+            $http.get("./albums.ms")
+                .success(function(data) {
+                    service.albums = data;
+                    def.resolve(data);
+                })
+                .error(function() {
+                    def.reject("Failed to get albums");
+                });
+            return def.promise;
+        }
+
         /**
          * Search for states... use $timeout to simulate
          * remote dataservice call.
          */
         function querySearch(query) {
-            var results = query ? self.states.filter(createFilterFor(query)) : [],
-                deferred;
-            if (self.simulateQuery) {
-                deferred = $q.defer();
-                $timeout(function () {
-                    deferred.resolve(results);
-                }, Math.random() * 1000, false);
-                return deferred.promise;
-            } else {
-                return results;
-            }
+            /*var results = query ? self.states.filter(createFilterFor(query)) : [],
+             deferred;
+             if (self.simulateQuery) {
+             deferred = $q.defer();
+             $timeout(function () {
+             deferred.resolve(results);
+             }, Math.random() * 1000, false);
+             return deferred.promise;
+             } else {
+             return results;
+             }*/
+             var def = $q.defer();
+
+             $http.get("api/v1/getpeople?name=" + query)
+                .success(function(data) {
+                    self.users = data.users;
+                    def.resolve(data.users);
+                })
+                .error(function() {
+                    def.reject("Failed to get albums");
+                });
+            return def.promise;
         }
 
         /**
@@ -149,7 +187,6 @@
 
 
     }
-
 
 
 })();

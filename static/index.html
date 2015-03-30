@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Angular Material - Starter App</title>
+    <title>iocontext</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +10,7 @@
 
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="./bower_components/md-chips/mdchips.css"/>
     <link rel="stylesheet" href="assets/app.css"/>
 </head>
 
@@ -20,16 +21,16 @@
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
 
-    <h1 flex="33">Angular Material - Starter</h1>
+    <h1 flex="33">iocontext</h1>
     <md-autocomplete flex="33" class="searchbox"
                      ng-disabled="ul.isDisabled"
                      md-no-cache="ul.noCache"
                      md-selected-item="ul.selectedItem"
                      md-search-text="ul.searchText"
-                     md-items="item in ul.users"
-                     md-item-text="item.display"
+                     md-items="item in ul.querySearch(ul.searchText)"
+                     md-item-text="item.name"
                      placeholder="tap a peronne name">
-        <span md-highlight-text="ul.searchText">{{item.name}}</span>
+        <span  md-highlight-text="ul.searchText">name:{{ item.name }}</span>
     </md-autocomplete>
 
 </md-toolbar>
@@ -40,19 +41,21 @@
         <md-list>
             <md-item ng-repeat="it in ul.users">
                 <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
-                    <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
-                    {{it.name}}
+                    <!--<md-icon md-svg-icon="{{ it.avatar }}" class="avatar"></md-icon>-->
+                    <img class="avatar" ng-src="{{it.profile_image_url}}">
+                    {{ it.name }}
                 </md-button>
             </md-item>
         </md-list>
     </md-sidenav>
 
     <md-content flex id="content">
+        
 
-        <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
-        <h2>{{ul.selected.name}}</h2>
+        <md-icon md-svg-icon="{{ ul.selected.avatar }}" class="avatar"></md-icon>
+        <h2>{{ ul.selected.name }}</h2>
 
-        <p>{{ul.selected.content}}</p>
+        <p>{{ ul.selected.content }}</p>
 
         <md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
             <md-icon md-svg-icon="share"></md-icon>
@@ -65,6 +68,7 @@
 <script src="./bower_components/angular-animate/angular-animate.js"></script>
 <script src="./bower_components/angular-aria/angular-aria.js"></script>
 <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
+<script src="./bower_components/md-chips/mdchips.js"></script>
 
 <script src="./src/users/Users.js"></script>
 <script src="./src/users/UserController.js"></script>
@@ -73,7 +77,7 @@
 <script type="text/javascript">
 
     angular
-            .module('starterApp', ['ngMaterial', 'users'])
+            .module('starterApp', ['ngMaterial', 'mdChips', 'users'])
             .config(function ($mdThemingProvider, $mdIconProvider) {
 
                 $mdIconProvider
