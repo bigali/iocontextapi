@@ -1,4 +1,3 @@
-
 from datetime import datetime, timedelta
 import os
 import uuid
@@ -14,7 +13,6 @@ from jwt import DecodeError, ExpiredSignature
 from model.user import User
 import tweepy
 
-
 from py2neo import Graph, Node, Relationship
 
 app = Flask(__name__)
@@ -23,10 +21,10 @@ auth.set_access_token("273164662-rcIu2uf0crCAolbKpGJETrU9iMc5XhDHjEo2Oupq",
                       "QxjyYfMQlK83GqwxVZmD4AZFIjtVNTbALFmrGLFdfjfjo")
 
 api = tweepy.API(auth)
-graph = Graph("https://551293319a25f:2nKvJUg3aU5jNdRuRjGdIKEG5Kf5GoP4tyrI8WQc@neo-551293319a25f-364459c455.do-stories.graphstory.com:7473/db/data")
+graph = Graph(
+    "https://551293319a25f:2nKvJUg3aU5jNdRuRjGdIKEG5Kf5GoP4tyrI8WQc@neo-551293319a25f-364459c455.do-stories.graphstory.com:7473/db/data")
 app = Flask(__name__)
 app.config.from_pyfile('flaskapp.cfg')
-
 
 
 def create_token(user):
@@ -82,6 +80,8 @@ def index():
 def me():
     user = User().get_user_by_id(graph, g.user_id)
     return jsonify(User().to_json(user))
+
+
 @app.route('/api/me/update', methods=['PUT'])
 @login_required
 def update_me():
@@ -90,6 +90,7 @@ def update_me():
     user["display_name"] = request.json['displayName']
     user.push()
     return jsonify(User().to_json(user))
+
 
 @app.route('/auth/login', methods=['POST'])
 def login():
@@ -126,10 +127,12 @@ def facebook():
 
     # Step 1. Exchange authorization code for access token.
     r = requests.get(access_token_url, params=params)
+    print r.text
     access_token = dict(parse_qsl(r.text))
-
+    token = json.loads(r.text)
+    print(token)
     # Step 2. Retrieve information about the current user.
-    r = requests.get(graph_api_url, params=access_token)
+    r = requests.get(graph_api_url, params=token)
     profile = json.loads(r.text)
     print profile
     # Step 3. (optional) Link accounts.
@@ -148,7 +151,8 @@ def facebook():
             response.status_code = 400
             return response
 
-        u = Node("User", id=str(uuid.uuid4()), email=profile['email'], facebook=profile['id'], display_name=profile['name'])
+        u = Node("User", id=str(uuid.uuid4()), email=profile['email'], facebook=profile['id'],
+                 display_name=profile['name'])
         graph.create(u)
         token = create_token(u)
         return jsonify(token=token)
@@ -217,11 +221,12 @@ def linkedin():
     r = requests.get(people_api_url, params=params)
     profile = json.loads(r.text)
     print profile
-    user = graph.find_one("User", 'linkedin',profile['id'])
+    user = graph.find_one("User", 'linkedin', profile['id'])
     if user:
         token = create_token(user)
         return jsonify(token=token)
-    u = Node("User", id=str(uuid.uuid4()), email=profile['emailAddress'], linkedin=profile['id'], display_name=profile['lastName']+" "+profile['firstName'])
+    u = Node("User", id=str(uuid.uuid4()), email=profile['emailAddress'], linkedin=profile['id'],
+             display_name=profile['lastName'] + " " + profile['firstName'])
     graph.create(u)
     token = create_token(u)
     return jsonify(token=token)
