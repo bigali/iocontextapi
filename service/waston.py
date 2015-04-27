@@ -32,7 +32,7 @@ class RelationshipExtraction:
                 raise Exception("API error, http status code %d" % r.status_code)
             raise Exception("API error %s: %s" % (error['error_code'], error['user_message']))
         return r.text
-    def parseMentions(tree):
+    def parseMentions(self,tree):
         types = {
             "Animal": {
                 "roles": [

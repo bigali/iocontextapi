@@ -31,8 +31,8 @@ graph = Graph(
 app = Flask(__name__)
 app.config.from_pyfile('flaskapp.cfg')
 
-relationshipExtration = RelationshipExtraction(user="d9d905bb-70f9-42a0-9200-2db9e5c6af69",
-                                                            password="btOvBRXxU2A6")
+relationshipExtration = RelationshipExtraction(user="de7bcf6d-01d9-4226-932f-b283302af6a2",
+                                                            password="orAuI8JJLynS")
 
 def create_token(user):
     payload = {
