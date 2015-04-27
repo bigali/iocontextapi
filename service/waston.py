@@ -151,6 +151,63 @@ class RelationshipExtraction:
 
         return nodes, edges
 
+class PersonalityInsights:
+    API_PERSONALITY = "https://gateway.watsonplatform.net/personality-insights/api"
+    def __init__(self, user, password):
+        self.user = user
+        self.password = password
+
+
+    def getProfile(self, text):
+
+
+        response = requests.post(self.API_PERSONALITY + "/v2/profile",
+                          auth=(self.user, self.password),
+                          headers = {"content-type": "text/plain"},
+                          data=text
+                          )
+        try:
+            return json.loads(response.text)
+        except:
+            raise Exception("Error processing the request, HTTP: %d" % response.status_code)
+
+    def flattenPortrait(self,tree):
+        nodes = []
+        edges = []
+
+        def f(t):
+            if t is None:
+                return None
+            # if level > 0 and (("children" not in t) or level != 2):
+            if t["id"] == 'r':
+                nodes.append({
+                    "id": t["id"],
+                    "label": "portrait",
+                    "shape": "circle",
+                    "value": 300
+                })
+            else:
+                nodes.append({
+                    "id": t["id"],
+                    "label": t["name"] + "\n" + ("%d%%" % int(t["percentage"] * 100) if "percentage" in t else ""),
+                    "group": t["category"] if "category" in t else "",
+                    "shape": "dot",
+                    "value": int(t["percentage"] * 100) if "percentage" in t else 100
+                })
+            if "children" in t:
+                for elem in t["children"]:
+                    if t["id"] != elem["id"]:
+                        edges.append({
+                            "from": t["id"],
+                            "to": elem["id"]
+                        })
+                    f(elem)
+
+        f(tree)
+        return nodes, edges
+
+
+
 def node_exist(targetId,nodes):
     exist= False
     for node in nodes:

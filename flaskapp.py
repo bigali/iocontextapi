@@ -12,7 +12,7 @@ from requests_oauthlib import OAuth1
 from jwt import DecodeError, ExpiredSignature
 import sys
 from model.user import User
-from service.waston import RelationshipExtraction
+from service.waston import RelationshipExtraction,PersonalityInsights
 import tweepy
 
 from py2neo import Graph, Node, Relationship
@@ -33,6 +33,8 @@ app.config.from_pyfile('flaskapp.cfg')
 
 relationshipExtration = RelationshipExtraction(user="de7bcf6d-01d9-4226-932f-b283302af6a2",
                                                             password="orAuI8JJLynS")
+
+personalityInsights = PersonalityInsights(user="0e7de0e3-03bd-457b-846a-e068ffde5e4e", password="dUDa53BTYORi")
 
 def create_token(user):
     payload = {
@@ -250,17 +252,8 @@ def searchUser():
         } for user in users
     ]})
 
-@app.route('/api/v1/interests/<screen_name>')
-def getRelationship(screen_name):
-    # tweets = api.user_timeline(id=screen_name,  )
-    tweets = tweepy.Cursor(api.user_timeline, id=screen_name).items(20)
-    text = ""
-    for tweet in tweets:
-        text += tweet.text + "\n " + "\n"
-    relationship = relationshipExtration.extractRelationship(text)
-    return Response(relationship, mimetype='text/xml')
 
-@app.route('/api/v1/parse/<screen_name>')
+@app.route('/api/v1/interests/<screen_name>')
 def parseInterests(screen_name):
     # tweets = api.user_timeline(id=screen_name,  )
     tweets = tweepy.Cursor(api.user_timeline, id=screen_name).items(40)
@@ -269,6 +262,19 @@ def parseInterests(screen_name):
         text += tweet.text + "\n " + "\n"
     relationship = relationshipExtration.extractRelationship(text)
     nodes, edges = relationshipExtration.parseMentions(relationship)
+
+    return jsonify({'nodes': nodes,
+                    'edges': edges})
+
+@app.route('/api/v1/personality/<screen_name>')
+def getPersonaliy(screen_name):
+    # tweets = api.user_timeline(id=screen_name,  )
+    tweets = tweepy.Cursor(api.user_timeline, id=screen_name).items(200)
+    text = ""
+    for tweet in tweets:
+        text += tweet.text + "\n " + "\n"
+    profile = personalityInsights.getProfile(text)
+    nodes, edges = personalityInsights.flattenPortrait(profile["tree"])
 
     return jsonify({'nodes': nodes,
                     'edges': edges})
