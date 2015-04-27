@@ -7,13 +7,18 @@ import requests
 from functools import wraps
 from urlparse import parse_qs, parse_qsl
 from urllib import urlencode
-from flask import Flask, g, send_file, request, redirect, url_for, jsonify, send_from_directory
+from flask import Flask, g, send_file, request, redirect, url_for, jsonify, send_from_directory, Response
 from requests_oauthlib import OAuth1
 from jwt import DecodeError, ExpiredSignature
+import sys
 from model.user import User
+from service.waston import RelationshipExtraction
 import tweepy
 
 from py2neo import Graph, Node, Relationship
+
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 app = Flask(__name__)
 auth = tweepy.OAuthHandler("VGbGua2zcrvAt8q7rFzYcF7Pp", "LC7DxOcHjzaoHH61MjlWwJvkERWhvnNIHKIasvvvDq9i3J8fGf")
@@ -26,6 +31,8 @@ graph = Graph(
 app = Flask(__name__)
 app.config.from_pyfile('flaskapp.cfg')
 
+relationshipExtration = RelationshipExtraction(user="d9d905bb-70f9-42a0-9200-2db9e5c6af69",
+                                                            password="btOvBRXxU2A6")
 
 def create_token(user):
     payload = {
@@ -243,6 +250,28 @@ def searchUser():
         } for user in users
     ]})
 
+@app.route('/api/v1/interests/<screen_name>')
+def getRelationship(screen_name):
+    # tweets = api.user_timeline(id=screen_name,  )
+    tweets = tweepy.Cursor(api.user_timeline, id=screen_name).items(20)
+    text = ""
+    for tweet in tweets:
+        text += tweet.text + "\n " + "\n"
+    relationship = relationshipExtration.extractRelationship(text)
+    return Response(relationship, mimetype='text/xml')
+
+@app.route('/api/v1/parse/<screen_name>')
+def parseInterests(screen_name):
+    # tweets = api.user_timeline(id=screen_name,  )
+    tweets = tweepy.Cursor(api.user_timeline, id=screen_name).items(40)
+    text = ""
+    for tweet in tweets:
+        text += tweet.text + "\n " + "\n"
+    relationship = relationshipExtration.extractRelationship(text)
+    nodes, edges = relationshipExtration.parseMentions(relationship)
+
+    return jsonify({'nodes': nodes,
+                    'edges': edges})
 
 @app.route('/<path:resource>')
 def serveStaticResource(resource):
