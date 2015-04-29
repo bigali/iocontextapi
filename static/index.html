@@ -31,9 +31,7 @@
     </ul>
 
 
-
-
-    <form ng-if="isAuthenticated()" class="navbar-form navbar-left"  role="search">
+    <form ng-if="isAuthenticated()" class="navbar-form navbar-left" role="search">
         <div class="form-group">
             <angucomplete id="users"
                           placeholder="Search users"
@@ -48,7 +46,6 @@
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
-
     <ul ng-if="!isAuthenticated()" class="nav navbar-nav pull-right">
         <li><a href="/#/login">Login</a></li>
         <li><a href="/#/signup">Sign up</a></li>
