@@ -209,9 +209,9 @@ class PersonalityInsights:
 
 
 def node_exist(targetId,nodes):
-    exist= False
+    exist = False
     for node in nodes:
-        if targetId == node["id"]:
-            exist=True
-            break;
+        if targetId.upper() == node["id"]:
+            exist = True
+            break
     return exist
