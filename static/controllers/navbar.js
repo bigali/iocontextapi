@@ -14,9 +14,9 @@ angular.module('MyApp')
         };
 
         $scope.go = function () {
+            $location.path('/home');
             Shared.set($scope.selectedUser);
             $rootScope.selected = $scope.selectedUser;
-            $location.path('/');
             $location.path('/result');
 
 
