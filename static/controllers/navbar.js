@@ -13,7 +13,7 @@ angular.module('MyApp')
             return $auth.isAuthenticated();
         };
 
-        $scope.go = function () {
+        $rootScope.go = function () {
             $location.path('/home');
             Shared.set($scope.selectedUser);
             $rootScope.selected = $scope.selectedUser;
