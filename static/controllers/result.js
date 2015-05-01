@@ -5,13 +5,12 @@ angular.module('MyApp')
         if ($rootScope.selected) {
             $scope.user = $rootScope.selected.originalObject;
             console.log($scope.user);
-            $scope.height
             $scope.options =
             {
                 stabilize: false,
                 navigation: true,
                 keyboard: true,
-                width: "1024px",
+                width: "",
                 height: "700px",
                 groups: {
                     values: {
