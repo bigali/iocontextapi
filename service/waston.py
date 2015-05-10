@@ -171,6 +171,23 @@ class PersonalityInsights:
         except:
             raise Exception("Error processing the request, HTTP: %d" % response.status_code)
 
+    def requestVisualization(self, data):
+        if self.url is None:
+            raise Exception("No User Modeling service is bound to this app")
+        r = requests.post(self.API_PERSONALITY + '/v2/visualize',
+                          auth=(self.user, self.password),
+                          headers={'content-type': 'application/json'},
+                          data=json.dumps(data)
+        )
+        print("Viz Request sent. Status code: %d, content-type: %s" % (r.status_code, r.headers['content-type']))
+        if r.status_code == 200:
+            return r.text
+        else:
+            return "Error building visualization"
+
+
+
+
     def flattenPortrait(self,tree):
         nodes = []
         edges = []

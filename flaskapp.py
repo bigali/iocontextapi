@@ -279,6 +279,17 @@ def getPersonaliy(screen_name):
     return jsonify({'nodes': nodes,
                     'edges': edges})
 
+@app.route('api/v1/viz/<screen_name>')
+def getViz(screen_name):
+    # tweets = api.user_timeline(id=screen_name,  )
+    tweets = tweepy.Cursor(api.user_timeline, id=screen_name).items(200)
+    text = ""
+    for tweet in tweets:
+        text += tweet.text + "\n " + "\n"
+    profile = personalityInsights.getProfile(text)
+    viz = personalityInsights.requestVisualization(profile)
+    return viz
+
 @app.route('/<path:resource>')
 def serveStaticResource(resource):
     return send_from_directory('static/', resource)
