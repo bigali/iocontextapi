@@ -5,6 +5,7 @@ import xml.etree.ElementTree as ET
 # This class implements a wrapper on the User Modeling service
 class RelationshipExtraction:
     API_RELATIONSHIP = "https://gateway.watsonplatform.net/relationship-extraction-beta/api"
+
     def __init__(self, user, password):
         self.user = user
         self.password = password
@@ -32,7 +33,8 @@ class RelationshipExtraction:
                 raise Exception("API error, http status code %d" % r.status_code)
             raise Exception("API error %s: %s" % (error['error_code'], error['user_message']))
         return r.text
-    def parseMentions(self,tree):
+
+    def parseMentions(self, tree):
         types = {
             "Animal": {
                 "roles": [
@@ -55,7 +57,8 @@ class RelationshipExtraction:
             },
             "EVENT": {
                 "roles": None,
-                "subtypes": ["EVENT_AWARD", "EVENT_BUSINESS", "EVENT_DEMONSTRATION", "EVENT_ELECTION", "EVENT_PERFORMANCE",
+                "subtypes": ["EVENT_AWARD", "EVENT_BUSINESS", "EVENT_DEMONSTRATION", "EVENT_ELECTION",
+                             "EVENT_PERFORMANCE",
                              "EVENT_SPORTS", "EVENT_VIOLENCE"]
             },
             "FACILITY": {
@@ -151,8 +154,10 @@ class RelationshipExtraction:
 
         return nodes, edges
 
+
 class PersonalityInsights:
     API_PERSONALITY = "https://gateway.watsonplatform.net/personality-insights/api"
+
     def __init__(self, user, password):
         self.user = user
         self.password = password
@@ -162,18 +167,16 @@ class PersonalityInsights:
 
 
         response = requests.post(self.API_PERSONALITY + "/v2/profile",
-                          auth=(self.user, self.password),
-                          headers = {"content-type": "text/plain"},
-                          data=text
-                          )
+                                 auth=(self.user, self.password),
+                                 headers={"content-type": "text/plain"},
+                                 data=text
+        )
         try:
             return json.loads(response.text)
         except:
             raise Exception("Error processing the request, HTTP: %d" % response.status_code)
 
     def requestVisualization(self, data):
-        if self.url is None:
-            raise Exception("No User Modeling service is bound to this app")
         r = requests.post(self.API_PERSONALITY + '/v2/visualize',
                           auth=(self.user, self.password),
                           headers={'content-type': 'application/json'},
@@ -186,9 +189,7 @@ class PersonalityInsights:
             return "Error building visualization"
 
 
-
-
-    def flattenPortrait(self,tree):
+    def flattenPortrait(self, tree):
         nodes = []
         edges = []
 
@@ -224,8 +225,7 @@ class PersonalityInsights:
         return nodes, edges
 
 
-
-def node_exist(targetId,nodes):
+def node_exist(targetId, nodes):
     exist = False
     for node in nodes:
         if targetId.upper() == node["id"]:

@@ -279,7 +279,7 @@ def getPersonaliy(screen_name):
     return jsonify({'nodes': nodes,
                     'edges': edges})
 
-@app.route('api/v1/viz/<screen_name>')
+@app.route('/api/v1/viz/<screen_name>')
 def getViz(screen_name):
     # tweets = api.user_timeline(id=screen_name,  )
     tweets = tweepy.Cursor(api.user_timeline, id=screen_name).items(200)
