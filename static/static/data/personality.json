@@ -1,0 +1,650 @@
+{
+  "edges": [
+    {
+      "from": "r",
+      "to": "personality"
+    },
+    {
+      "from": "personality",
+      "to": "Openness_parent"
+    },
+    {
+      "from": "Openness_parent",
+      "to": "Openness"
+    },
+    {
+      "from": "Openness",
+      "to": "Adventurousness"
+    },
+    {
+      "from": "Openness",
+      "to": "Artistic interests"
+    },
+    {
+      "from": "Openness",
+      "to": "Emotionality"
+    },
+    {
+      "from": "Openness",
+      "to": "Imagination"
+    },
+    {
+      "from": "Openness",
+      "to": "Intellect"
+    },
+    {
+      "from": "Openness",
+      "to": "Liberalism"
+    },
+    {
+      "from": "Openness_parent",
+      "to": "Conscientiousness"
+    },
+    {
+      "from": "Conscientiousness",
+      "to": "Achievement striving"
+    },
+    {
+      "from": "Conscientiousness",
+      "to": "Cautiousness"
+    },
+    {
+      "from": "Conscientiousness",
+      "to": "Dutifulness"
+    },
+    {
+      "from": "Conscientiousness",
+      "to": "Orderliness"
+    },
+    {
+      "from": "Conscientiousness",
+      "to": "Self-discipline"
+    },
+    {
+      "from": "Conscientiousness",
+      "to": "Self-efficacy"
+    },
+    {
+      "from": "Openness_parent",
+      "to": "Extraversion"
+    },
+    {
+      "from": "Extraversion",
+      "to": "Activity level"
+    },
+    {
+      "from": "Extraversion",
+      "to": "Assertiveness"
+    },
+    {
+      "from": "Extraversion",
+      "to": "Cheerfulness"
+    },
+    {
+      "from": "Extraversion",
+      "to": "Excitement-seeking"
+    },
+    {
+      "from": "Extraversion",
+      "to": "Friendliness"
+    },
+    {
+      "from": "Extraversion",
+      "to": "Gregariousness"
+    },
+    {
+      "from": "Openness_parent",
+      "to": "Agreeableness"
+    },
+    {
+      "from": "Agreeableness",
+      "to": "Altruism"
+    },
+    {
+      "from": "Agreeableness",
+      "to": "Cooperation"
+    },
+    {
+      "from": "Agreeableness",
+      "to": "Modesty"
+    },
+    {
+      "from": "Agreeableness",
+      "to": "Morality"
+    },
+    {
+      "from": "Agreeableness",
+      "to": "Sympathy"
+    },
+    {
+      "from": "Agreeableness",
+      "to": "Trust"
+    },
+    {
+      "from": "Openness_parent",
+      "to": "Neuroticism"
+    },
+    {
+      "from": "Neuroticism",
+      "to": "Anger"
+    },
+    {
+      "from": "Neuroticism",
+      "to": "Anxiety"
+    },
+    {
+      "from": "Neuroticism",
+      "to": "Depression"
+    },
+    {
+      "from": "Neuroticism",
+      "to": "Immoderation"
+    },
+    {
+      "from": "Neuroticism",
+      "to": "Self-consciousness"
+    },
+    {
+      "from": "Neuroticism",
+      "to": "Vulnerability"
+    },
+    {
+      "from": "r",
+      "to": "needs"
+    },
+    {
+      "from": "needs",
+      "to": "Structure_parent"
+    },
+    {
+      "from": "Structure_parent",
+      "to": "Challenge"
+    },
+    {
+      "from": "Structure_parent",
+      "to": "Closeness"
+    },
+    {
+      "from": "Structure_parent",
+      "to": "Curiosity"
+    },
+    {
+      "from": "Structure_parent",
+      "to": "Excitement"
+    },
+    {
+      "from": "Structure_parent",
+      "to": "Harmony"
+    },
+    {
+      "from": "Structure_parent",
+      "to": "Ideal"
+    },
+    {
+      "from": "Structure_parent",
+      "to": "Liberty"
+    },
+    {
+      "from": "Structure_parent",
+      "to": "Love"
+    },
+    {
+      "from": "Structure_parent",
+      "to": "Practicality"
+    },
+    {
+      "from": "Structure_parent",
+      "to": "Self-expression"
+    },
+    {
+      "from": "Structure_parent",
+      "to": "Stability"
+    },
+    {
+      "from": "Structure_parent",
+      "to": "Structure"
+    },
+    {
+      "from": "r",
+      "to": "values"
+    },
+    {
+      "from": "values",
+      "to": "Hedonism_parent"
+    },
+    {
+      "from": "Hedonism_parent",
+      "to": "Conservation"
+    },
+    {
+      "from": "Hedonism_parent",
+      "to": "Openness to change"
+    },
+    {
+      "from": "Hedonism_parent",
+      "to": "Hedonism"
+    },
+    {
+      "from": "Hedonism_parent",
+      "to": "Self-enhancement"
+    },
+    {
+      "from": "Hedonism_parent",
+      "to": "Self-transcendence"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "r",
+      "label": "portrait",
+      "shape": "circle",
+      "value": 300
+    },
+    {
+      "group": "",
+      "id": "personality",
+      "label": "Big 5 \n",
+      "shape": "dot",
+      "value": 100
+    },
+    {
+      "group": "personality",
+      "id": "Openness_parent",
+      "label": "Openness\n84%",
+      "shape": "dot",
+      "value": 84
+    },
+    {
+      "group": "personality",
+      "id": "Openness",
+      "label": "Openness\n84%",
+      "shape": "dot",
+      "value": 84
+    },
+    {
+      "group": "personality",
+      "id": "Adventurousness",
+      "label": "Adventurousness\n72%",
+      "shape": "dot",
+      "value": 72
+    },
+    {
+      "group": "personality",
+      "id": "Artistic interests",
+      "label": "Artistic interests\n39%",
+      "shape": "dot",
+      "value": 39
+    },
+    {
+      "group": "personality",
+      "id": "Emotionality",
+      "label": "Emotionality\n25%",
+      "shape": "dot",
+      "value": 25
+    },
+    {
+      "group": "personality",
+      "id": "Imagination",
+      "label": "Imagination\n85%",
+      "shape": "dot",
+      "value": 85
+    },
+    {
+      "group": "personality",
+      "id": "Intellect",
+      "label": "Intellect\n88%",
+      "shape": "dot",
+      "value": 88
+    },
+    {
+      "group": "personality",
+      "id": "Liberalism",
+      "label": "Authority-challenging\n89%",
+      "shape": "dot",
+      "value": 89
+    },
+    {
+      "group": "personality",
+      "id": "Conscientiousness",
+      "label": "Conscientiousness\n57%",
+      "shape": "dot",
+      "value": 57
+    },
+    {
+      "group": "personality",
+      "id": "Achievement striving",
+      "label": "Achievement striving\n70%",
+      "shape": "dot",
+      "value": 70
+    },
+    {
+      "group": "personality",
+      "id": "Cautiousness",
+      "label": "Cautiousness\n81%",
+      "shape": "dot",
+      "value": 81
+    },
+    {
+      "group": "personality",
+      "id": "Dutifulness",
+      "label": "Dutifulness\n33%",
+      "shape": "dot",
+      "value": 33
+    },
+    {
+      "group": "personality",
+      "id": "Orderliness",
+      "label": "Orderliness\n33%",
+      "shape": "dot",
+      "value": 33
+    },
+    {
+      "group": "personality",
+      "id": "Self-discipline",
+      "label": "Self-discipline\n35%",
+      "shape": "dot",
+      "value": 35
+    },
+    {
+      "group": "personality",
+      "id": "Self-efficacy",
+      "label": "Self-efficacy\n72%",
+      "shape": "dot",
+      "value": 72
+    },
+    {
+      "group": "personality",
+      "id": "Extraversion",
+      "label": "Extraversion\n24%",
+      "shape": "dot",
+      "value": 24
+    },
+    {
+      "group": "personality",
+      "id": "Activity level",
+      "label": "Activity level\n41%",
+      "shape": "dot",
+      "value": 41
+    },
+    {
+      "group": "personality",
+      "id": "Assertiveness",
+      "label": "Assertiveness\n31%",
+      "shape": "dot",
+      "value": 31
+    },
+    {
+      "group": "personality",
+      "id": "Cheerfulness",
+      "label": "Cheerfulness\n15%",
+      "shape": "dot",
+      "value": 15
+    },
+    {
+      "group": "personality",
+      "id": "Excitement-seeking",
+      "label": "Excitement-seeking\n16%",
+      "shape": "dot",
+      "value": 16
+    },
+    {
+      "group": "personality",
+      "id": "Friendliness",
+      "label": "Outgoing\n22%",
+      "shape": "dot",
+      "value": 22
+    },
+    {
+      "group": "personality",
+      "id": "Gregariousness",
+      "label": "Gregariousness\n15%",
+      "shape": "dot",
+      "value": 15
+    },
+    {
+      "group": "personality",
+      "id": "Agreeableness",
+      "label": "Agreeableness\n22%",
+      "shape": "dot",
+      "value": 22
+    },
+    {
+      "group": "personality",
+      "id": "Altruism",
+      "label": "Altruism\n30%",
+      "shape": "dot",
+      "value": 30
+    },
+    {
+      "group": "personality",
+      "id": "Cooperation",
+      "label": "Cooperation\n65%",
+      "shape": "dot",
+      "value": 65
+    },
+    {
+      "group": "personality",
+      "id": "Modesty",
+      "label": "Modesty\n25%",
+      "shape": "dot",
+      "value": 25
+    },
+    {
+      "group": "personality",
+      "id": "Morality",
+      "label": "Uncompromising\n31%",
+      "shape": "dot",
+      "value": 31
+    },
+    {
+      "group": "personality",
+      "id": "Sympathy",
+      "label": "Sympathy\n90%",
+      "shape": "dot",
+      "value": 90
+    },
+    {
+      "group": "personality",
+      "id": "Trust",
+      "label": "Trust\n47%",
+      "shape": "dot",
+      "value": 47
+    },
+    {
+      "group": "personality",
+      "id": "Neuroticism",
+      "label": "Emotional range\n45%",
+      "shape": "dot",
+      "value": 45
+    },
+    {
+      "group": "personality",
+      "id": "Anger",
+      "label": "Fiery\n44%",
+      "shape": "dot",
+      "value": 44
+    },
+    {
+      "group": "personality",
+      "id": "Anxiety",
+      "label": "Prone to worry\n29%",
+      "shape": "dot",
+      "value": 29
+    },
+    {
+      "group": "personality",
+      "id": "Depression",
+      "label": "Melancholy\n38%",
+      "shape": "dot",
+      "value": 38
+    },
+    {
+      "group": "personality",
+      "id": "Immoderation",
+      "label": "Immoderation\n17%",
+      "shape": "dot",
+      "value": 17
+    },
+    {
+      "group": "personality",
+      "id": "Self-consciousness",
+      "label": "Self-consciousness\n53%",
+      "shape": "dot",
+      "value": 53
+    },
+    {
+      "group": "personality",
+      "id": "Vulnerability",
+      "label": "Susceptible to stress\n41%",
+      "shape": "dot",
+      "value": 41
+    },
+    {
+      "group": "",
+      "id": "needs",
+      "label": "Needs\n",
+      "shape": "dot",
+      "value": 100
+    },
+    {
+      "group": "needs",
+      "id": "Structure_parent",
+      "label": "Structure\n94%",
+      "shape": "dot",
+      "value": 94
+    },
+    {
+      "group": "needs",
+      "id": "Challenge",
+      "label": "Challenge\n93%",
+      "shape": "dot",
+      "value": 93
+    },
+    {
+      "group": "needs",
+      "id": "Closeness",
+      "label": "Closeness\n49%",
+      "shape": "dot",
+      "value": 49
+    },
+    {
+      "group": "needs",
+      "id": "Curiosity",
+      "label": "Curiosity\n84%",
+      "shape": "dot",
+      "value": 84
+    },
+    {
+      "group": "needs",
+      "id": "Excitement",
+      "label": "Excitement\n43%",
+      "shape": "dot",
+      "value": 43
+    },
+    {
+      "group": "needs",
+      "id": "Harmony",
+      "label": "Harmony\n75%",
+      "shape": "dot",
+      "value": 75
+    },
+    {
+      "group": "needs",
+      "id": "Ideal",
+      "label": "Ideal\n5%",
+      "shape": "dot",
+      "value": 5
+    },
+    {
+      "group": "needs",
+      "id": "Liberty",
+      "label": "Liberty\n90%",
+      "shape": "dot",
+      "value": 90
+    },
+    {
+      "group": "needs",
+      "id": "Love",
+      "label": "Love\n74%",
+      "shape": "dot",
+      "value": 74
+    },
+    {
+      "group": "needs",
+      "id": "Practicality",
+      "label": "Practicality\n31%",
+      "shape": "dot",
+      "value": 31
+    },
+    {
+      "group": "needs",
+      "id": "Self-expression",
+      "label": "Self-expression\n94%",
+      "shape": "dot",
+      "value": 94
+    },
+    {
+      "group": "needs",
+      "id": "Stability",
+      "label": "Stability\n90%",
+      "shape": "dot",
+      "value": 90
+    },
+    {
+      "group": "needs",
+      "id": "Structure",
+      "label": "Structure\n94%",
+      "shape": "dot",
+      "value": 94
+    },
+    {
+      "group": "",
+      "id": "values",
+      "label": "Values\n",
+      "shape": "dot",
+      "value": 100
+    },
+    {
+      "group": "values",
+      "id": "Hedonism_parent",
+      "label": "Hedonism\n11%",
+      "shape": "dot",
+      "value": 11
+    },
+    {
+      "group": "values",
+      "id": "Conservation",
+      "label": "Conservation\n17%",
+      "shape": "dot",
+      "value": 17
+    },
+    {
+      "group": "values",
+      "id": "Openness to change",
+      "label": "Openness to change\n52%",
+      "shape": "dot",
+      "value": 52
+    },
+    {
+      "group": "values",
+      "id": "Hedonism",
+      "label": "Hedonism\n11%",
+      "shape": "dot",
+      "value": 11
+    },
+    {
+      "group": "values",
+      "id": "Self-enhancement",
+      "label": "Self-enhancement\n86%",
+      "shape": "dot",
+      "value": 86
+    },
+    {
+      "group": "values",
+      "id": "Self-transcendence",
+      "label": "Self-transcendence\n47%",
+      "shape": "dot",
+      "value": 47
+    }
+  ]
+}

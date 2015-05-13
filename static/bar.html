@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <link href="stylesheets/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="vendor/jquery.min.js"></script>
+    <script src="vendor/angular.js"></script>
+    <script src="vendor/highcharts.js"></script>
+    <script src="vendor/highcharts-ng.js"></script>
+    <script src="bar.js"></script>
+</head>
+<body>
+<h2>résumé de peronalité</h2>
+
+<div ng-app="myapp">
+    <div ng-controller="myctrl">
+        <div class="row">
+            <div class="span9">
+                <div class="row">
+                    <highchart id="chart1" config="chartConfig" class="span9"></highchart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

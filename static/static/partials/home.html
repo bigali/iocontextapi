@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="panel panel-default" style="height: 40%;width: 80%">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                     <form  class="navbar-form navbar-left" role="search">
+                        <div class="form-group" style="width: auto">
+                            <angucomplete id="users"
+                                          placeholder="Search users"
+                                          pause="1000"
+                                          selectedobject="selectedUser"
+                                          url="api/v1/getpeople?name="
+                                          datafield="users"
+                                          titlefield="name"
+                                          descriptionfield="screen_name"
+                                          imagefield="profile_image_url"
+                                          inputclass="form-control form-controle-small"/>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
