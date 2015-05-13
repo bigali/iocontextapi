@@ -224,6 +224,42 @@ class PersonalityInsights:
         f(tree)
         return nodes, edges
 
+    def bardata(self, tree):
+        data = []
+
+        def f(t):
+            if t is None:
+                return None
+            # if level > 0 and (("children" not in t) or level != 2):
+            if "percentage" in t and int(t["percentage"] * 100) > 80:
+                data.append([
+                    t["name"], int(t["percentage"] * 100)
+                ])
+            if "children" in t:
+                for elem in t["children"]:
+                    f(elem)
+
+        f(tree)
+        return data
+
+    def datadata(self, tree):
+        arr = []
+
+        def f(t, level):
+            if t is None:
+                return None;
+            if level > 0 and (("children" not in t) or level != 2):
+                if "percentage" in t and int(t["percentage"] * 100) > 50:
+                    arr.append([
+                        t["name"], int(t["percentage"] * 100)
+                    ])
+            if "children" in t and t["id"] != 'sbh':
+                for elem in t["children"]:
+                    f(elem, level + 1);
+
+        f(tree, 0)
+        return arr
+
 
 def node_exist(targetId, nodes):
     exist = False

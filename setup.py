@@ -14,5 +14,6 @@ setup(name='FlaskApp',
                         'itsdangerous',
                         'PyJWT',
                         'requests-oauthlib',
+                        'facebook-sdk'
       ],
 )
