@@ -533,6 +533,10 @@ def update_me():
     user["display_name"] = request.json['displayName']
     user.push()
     return jsonify(User().to_json(user))
+    
+@app.route('/api/v1/savesearch', methods=['POST'])
+def save_search():
+    return jsonify({"message":"cool"})
 
 
 @app.route('/auth/login', methods=['POST'])

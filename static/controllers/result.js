@@ -83,9 +83,13 @@ angular.module('MyApp')
                 // create a network
                 $scope.data = {nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges)};
 
-                console.log($scope.data)
+                console.log;
 
-            }
+            };
+        }
+        
+        $scope.savesearch=function(){
+            $http.post('/api/v1/savesearch', $scope.data);
         }
 
     });
