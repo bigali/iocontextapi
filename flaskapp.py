@@ -727,10 +727,12 @@ def parseInterests(screen_name):
 @app.route('/api/v1/personality')
 def getPersonaliy():
 
-    nodes, edges = personalityInsights.flattenPortrait(profileee["tree"])
-
-    return jsonify({'nodes': nodes,'edges': edges})
-
+    #nodes, edges = personalityInsights.flattenPortrait(profileee["tree"])
+    nodes,edges=personalityInsights.flattenPortrait2(profileee["tree"])
+    #return jsonify({'nodes': nodes,'edges': edges})
+    
+    return jsonify({'nodes':nodes, 'edges':edges}) 
+    
 @app.route('/api/v1/bar')
 def getBar():
 
@@ -770,4 +772,4 @@ def test():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0',port=80)

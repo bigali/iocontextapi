@@ -259,6 +259,28 @@ class PersonalityInsights:
 
         f(tree, 0)
         return arr
+    
+    def flattenPortrait2(self,tree):
+    	edges = [{"from": 'profile', "to": "personality"},{"from":'profile', "to": "values"},{"from": 'profile', "to": "needs"}]
+    	nodes=[{"id":"personality","label":"big 5"},{"id":"values","label":"values"},{"id":"needs","label":"needs"}]
+    	def f(t, level):
+    		if t is None:
+    			return None;
+    		if level>0 and (("children" not in t) or level!=2):
+    		    if "percentage" in t:
+        			nodes.append({
+        			    "id": t["id"],
+        			    "label": t["name"] + "\n" + ("%d%%" % int(t["percentage"] * 100) if "percentage" in t else ""),
+        			    "group": t["category"] if "category" in t else "",
+        			    "shape": "dot",
+        			    "value": int(t["percentage"] * 200) 
+        			    })
+        			edges.append({"from": t["category"],"to": t["id"]})
+    		if "children" in t and t["id"]!='sbh':
+    			for elem in t["children"]:
+    				f(elem, level+1);
+    	f(tree, 0)
+    	return nodes,edges
 
 
 def node_exist(targetId, nodes):

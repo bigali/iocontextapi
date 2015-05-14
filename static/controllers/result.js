@@ -40,7 +40,7 @@ angular.module('MyApp')
 
             //var promise1 = $http({method: 'GET', url: "api/v1/personality/" + $scope.user.screen_name, cache: 'true'});
             var promise2 = $http({method: 'GET', url: "api/v1/interests/" + $scope.user.screen_name, cache: 'true'});
-            var promise1 = $http({method: 'GET', url:"data/personality.json"  });
+            var promise1 = $http({method: 'GET', url:"api/v1/personality"  });
             // var promise2 = $http({method: 'GET', url: "data/interests.json" });
 
             $q.all([promise1, promise2]).then(function (data) {
@@ -60,7 +60,8 @@ angular.module('MyApp')
                         image: $scope.user.profile_image_url
                     },
                     {id: "interests", value: 300, label: 'interests', shape: 'circle'},
-                    {id: 'people', value: 300, label: 'people', shape: 'circle'}
+                    {id: 'people', value: 300, label: 'people', shape: 'circle'},
+                    {id: 'profile', value: 300, label: 'profile', shape: 'circle'}
 
 
                 ];
@@ -68,7 +69,7 @@ angular.module('MyApp')
                 var edges = [
                     {from: "person", to: "interests"},
                     {from: "person", to: 'people'},
-                    {from: "person", to: 'r'},
+                    {from: "person", to: 'profile'},
                 ];
 
 

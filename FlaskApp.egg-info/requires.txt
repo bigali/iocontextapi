@@ -1,0 +1,12 @@
+flask
+tweepy
+py2neo
+requests
+Jinja2
+MarkupSafe
+SQLAlchemy
+Werkzeug
+itsdangerous
+PyJWT
+requests-oauthlib
+facebook-sdk
